@@ -1,0 +1,45 @@
+//
+//  ViewController.swift
+//  apple_lab05_UIKit_PARTE2
+//
+//  Created by Tecsup on 13/04/26.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    // OUTLETS
+    @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var heightTextField: UITextField!
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Texto inicial
+        resultLabel.text = "Introduce tu peso y altura"
+    }
+
+    // ACTION DEL BOTÓN
+    @IBAction func calcularResultado(_ sender: UIButton) {
+        
+        let peso = Double(weightTextField.text ?? "") ?? 0
+        let altura = Double(heightTextField.text ?? "") ?? 0
+
+        if altura > 0 {
+            let imc = peso / (altura * altura)
+
+            if imc < 18.5 {
+                resultLabel.text = "Bajo peso"
+            } else if imc < 25 {
+                resultLabel.text = "Peso normal"
+            } else {
+                resultLabel.text = "Sobrepeso"
+            }
+
+        } else {
+            resultLabel.text = "Datos inválidos"
+        }
+    }
+}
